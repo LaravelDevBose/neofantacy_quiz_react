@@ -1,0 +1,33 @@
+.otp .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+}
+
+.otp .container #instruction {
+  color: #989898;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.otp .container .input-fields {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.1rem;
+  width: 90%;
+  margin: 1rem 0;
+}
+
+.otp .container .input-fields input {
+  width: 3rem;
+  font-size: 1.1rem;
+  aspect-ratio: 1;
+  text-align: center;
+  background-color: #ebebeb;
+  border: 0;
+  border-bottom: 3px solid #c4c4c4;
+}

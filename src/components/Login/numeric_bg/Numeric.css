@@ -1,0 +1,7 @@
+.numeric{
+   background-image: url('../../../assets/Numeric_bg.png');
+   background-size: cover;
+   background-position: center;
+   min-height: 35vh;
+   width: 100%;
+}

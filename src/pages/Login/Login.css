@@ -1,0 +1,68 @@
+.login .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+}
+
+.login .container #instruction {
+  color: #989898;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.login .container .input-field {
+  background-color: #ebebeb;
+  width: 90%;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.login .container .input-field input {
+  padding: 0 0.5rem;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 1.1rem;
+}
+
+.red-btn {
+  background-color: #ee203b;
+  border: 0;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  padding: 0.8rem 0.5rem;
+  font-size: 1.1rem;
+  color: #fff;
+  border-radius: 100px;
+  box-shadow: 8px 8px 24px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem 0;
+}
+
+.login .btn {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  outline: none;
+  width: 90%;
+  text-align: center;
+  padding: 0.8rem 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 100px;
+  margin: 0.5rem 0;
+}
+
+.login .btn img {
+  margin-right: 1rem;
+  transform: scale(1.2);
+}
