@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { getQuizes } from "../../feature/quiz/quizSlice";
 import { useSelector } from "react-redux";
 import { useCountdown } from "../../Hooks/CountDown";
+import axios from "axios";
+import { API_URL, getToken } from "../../Helper/helper";
 
 const Quiz = () => {
   const [curQues, setCurQues] = useState(0);
@@ -61,6 +63,19 @@ const Quiz = () => {
         ...prev,
         [id]: ans,
       };
+    });
+  };
+
+  const handleSubmit = () => {
+    axios({
+      url: `${API_URL}/submit-answer/${quiz.id}`,
+      method: "post",
+      data: {
+        point: totalPoints,
+      },
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
     });
   };
 
@@ -216,6 +231,7 @@ const Quiz = () => {
             id="next"
             onClick={() => {
               setOpened(true);
+              handleSubmit();
             }}
           >
             Submit
