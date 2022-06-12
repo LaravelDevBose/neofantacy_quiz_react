@@ -11,15 +11,16 @@ const register = async (userData) => {
 };
 
 // getMe
-// const getMe = async (token) => {
-//   const response = await axios.get(API_URL + "/auth/me", {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   return response.data.data;
-// };
+const getMe = async (token) => {
+  const response = await axios.get(API_URL + "/me", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log(response);
+  return response.data.data;
+};
 
 // login user
 const login = async (userData) => {
@@ -42,6 +43,7 @@ const login = async (userData) => {
 const userService = {
   register,
   login,
+  getMe,
 };
 
 export default userService;

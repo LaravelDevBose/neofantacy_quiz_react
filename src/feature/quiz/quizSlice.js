@@ -40,7 +40,13 @@ const quizSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getQuizes.fulfilled, (state, action) => {
-      state.quiz = action.payload.data;
+      if (action.payload.status === 200) {
+        state.quiz = action.payload.data;
+      } else {
+        state.message = action.payload.message;
+        state.isError = true;
+        state.quiz = null;
+      }
     });
   },
 });

@@ -20,8 +20,12 @@ const Quiz = () => {
   const theme = useMantineTheme();
   const data = useLocation();
   const [totalPoints, setTotalPoints] = useState(0);
-  const quiz = useSelector((state) => state?.quiz?.quiz);
-  const { questions = [] } = quiz;
+  const quiz = useSelector((state) => state?.quiz);
+  let questions = [];
+  if (quiz?.quiz?.questions) {
+    questions = quiz.quiz?.questions;
+  }
+
   const { quizId } = data.state;
   const [savedAnswer, setSavedAnswer] = useState({});
   const navigate = useNavigate();
@@ -89,7 +93,7 @@ const Quiz = () => {
           className="d-flex"
           style={{ alignItems: "center", justifyContent: "space-between" }}
         >
-          <p id="quiz-title">Quiz #{quiz.name}</p>
+          <p id="quiz-title">Quiz #{quiz?.name}</p>
           <Badge
             size="lg"
             sx={{
@@ -130,6 +134,11 @@ const Quiz = () => {
             })}
         </div>
       </div>
+
+      <p>
+        {quiz.isError && quiz.message}.{" "}
+        <NavLink to="/dashboard">Go Back</NavLink>
+      </p>
 
       {/* Quiz Body */}
       <div className="quiz-body">

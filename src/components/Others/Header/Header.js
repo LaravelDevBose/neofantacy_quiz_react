@@ -6,13 +6,14 @@ import { useState } from "react";
 import { Modal, useMantineTheme, Divider } from "@mantine/core";
 import signout from "../../../assets/signout.png";
 import { logoutUser } from "../../../feature/user/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state?.user?.user);
   const navigate = useNavigate();
   return (
     <div className="header">
@@ -45,16 +46,17 @@ const Header = () => {
             marginTop: "-2rem",
           }}
         >
-          <div
+          <img
+            src={user?.avatar}
             className="avatar"
             style={{ width: "5rem", height: "5rem" }}
-          ></div>
-          <h4 style={{ margin: "0.5rem 0" }}>@bhojakS</h4>
-          <h3>Smith Bhojak</h3>
+          />
+          <h4 style={{ margin: "0.5rem 0" }}>@{user?.name}</h4>
+          <h3>{user?.name}</h3>
           <h4 className="silent-text" style={{ margin: "0.5rem 0" }}>
-            +91-9876543210
+            {user?.phone}
           </h4>
-          <h4 className="silent-text">bhojakS@gmail.com</h4>
+          <h4 className="silent-text">{user?.email}</h4>
         </div>
         <Divider my="md" size="xs" />
         <p style={{ textAlign: "center" }}>Connect Wallet</p>

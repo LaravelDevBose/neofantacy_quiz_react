@@ -1,22 +1,27 @@
 import React, { forwardRef } from "react";
-import { QrReader } from "react-qr-reader";
+import QrReader from "react-qr-scanner";
 
-function QRScan({ handleScan }, ref) {
+function QRCodeReader({ handleScan }, ref) {
+  console.log();
+
+  const handleError = (e) => {
+    console.log(e);
+  };
+
+  const previewStyle = {
+    width: 400,
+    height: 400,
+  };
   return (
-    <QrReader
-      ref={ref}
-      onResult={(result, error) => {
-        if (!!result) {
-          handleScan(result?.text);
-        }
-
-        if (!!error) {
-          console.info(error);
-        }
-        // console.log(result);
-      }}
-      style={{ width: "100%" }}
-    />
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <QrReader
+        ref={ref}
+        delay={100}
+        style={previewStyle}
+        onError={handleError}
+        onScan={handleScan}
+      />
+    </div>
   );
 }
-export default forwardRef(QRScan);
+export default forwardRef(QRCodeReader);

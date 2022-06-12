@@ -7,9 +7,9 @@ import Position from "../../assets/position.png";
 import QR from "../../assets/scan.png";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@mantine/core";
-import QRScan from "../../components/QRCode/QRScan";
+import QRCodeReader from "../../components/QRCode/QRScan";
 import { useDispatch, useSelector } from "react-redux";
-import { getLeadingUsers } from "../../feature/user/userSlice";
+import { getLeadingUsers, getMe } from "../../feature/user/userSlice";
 import { API_URL, getToken } from "../../Helper/helper";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ const Dashboard = () => {
       navigate("/");
     }
     dispatch(getLeadingUsers());
-
+    dispatch(getMe());
     axios({
       method: "get",
       url: `${API_URL}/get/my_position`,
@@ -49,13 +49,14 @@ const Dashboard = () => {
   };
 
   const handleScan = (data) => {
+    console.log(data);
     if (!!data) {
       setQrData(data);
       setOpenQR(false);
 
       navigate("/quiz", {
         state: {
-          quizId: data,
+          quizId: data.text,
         },
       });
       qrRef.current.stopCamera();
@@ -154,7 +155,7 @@ const Dashboard = () => {
           <img src={QR} alt="scan" /> SCAN QR
         </button>
       </div>
-      {openQR && <QRScan ref={qrRef} handleScan={handleScan} />}
+      {openQR && <QRCodeReader ref={qrRef} handleScan={handleScan} />}
     </div>
   );
 };
