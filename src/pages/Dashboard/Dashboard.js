@@ -10,7 +10,8 @@ import { Badge } from "@mantine/core";
 import QRScan from "../../components/QRCode/QRScan";
 import { useDispatch, useSelector } from "react-redux";
 import { getLeadingUsers } from "../../feature/user/userSlice";
-import { getToken } from "../../Helper/helper";
+import { API_URL, getToken } from "../../Helper/helper";
+import axios from "axios";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
@@ -19,12 +20,27 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const lead = useSelector((state) => state?.user?.lead);
   const qrRef = useRef(null);
+  const [point, setPoint] = useState(0);
+  const [position, setPosition] = useState(0);
 
   useEffect(() => {
     if (!getToken()) {
       navigate("/");
     }
     dispatch(getLeadingUsers());
+
+    axios({
+      method: "get",
+      url: `${API_URL}/get/my_position`,
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        setPoint(res?.data?.data?.point);
+        setPosition(res?.data?.data?.position);
+      }
+    });
   }, []);
 
   const handleOpenQRCode = () => {
@@ -58,15 +74,15 @@ const Dashboard = () => {
             <div className="tab-con">
               <div className="block1 d-flex-column">
                 <div className="d-flex">
-                  <h1 style={{ marginRight: "0.3rem" }}>24</h1>
+                  <h1 style={{ marginRight: "0.3rem" }}>{point}</h1>
                   <p>pts</p>
                 </div>
                 <img src={Trophy} alt="trophy" />
               </div>
               <div className="block2 d-flex-column">
                 <div className="d-flex">
-                  <h1 style={{ marginRight: "0.3rem" }}>24</h1>
-                  <p>pts</p>
+                  <h1 style={{ marginRight: "0.3rem" }}>{position}</h1>
+                  <p>position</p>
                 </div>
                 <img src={Position} alt="position" />
               </div>
