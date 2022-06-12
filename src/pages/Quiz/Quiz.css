@@ -18,7 +18,7 @@
   background-color: #fff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -40,10 +40,6 @@
   color: #fff;
 }
 
-.quiz .btns #prev {
-  background-color: #fff;
-  color: #ee203b;
-}
 
 .quiz .dot {
   height: 0.5rem;
