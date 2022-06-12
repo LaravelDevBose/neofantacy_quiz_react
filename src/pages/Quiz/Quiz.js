@@ -72,7 +72,7 @@ const Quiz = () => {
 
   const handleSubmit = () => {
     axios({
-      url: `${API_URL}/submit-answer/${quiz.id}`,
+      url: `${API_URL}/submit-answer/${quiz?.quiz?.id}`,
       method: "post",
       data: {
         point: totalPoints,
@@ -93,7 +93,7 @@ const Quiz = () => {
           className="d-flex"
           style={{ alignItems: "center", justifyContent: "space-between" }}
         >
-          <p id="quiz-title">Quiz #{quiz?.name}</p>
+          <p id="quiz-title">Quiz #{quiz?.quiz?.name}</p>
           <Badge
             size="lg"
             sx={{
@@ -134,13 +134,13 @@ const Quiz = () => {
             })}
         </div>
       </div>
-
-      <p>
-        {quiz.isError && quiz.message}.{" "}
-        <NavLink to="/dashboard">Go Back</NavLink>
-      </p>
-
-      {/* Quiz Body */}
+      {quiz.isError && (
+        <p>
+          {quiz.message}
+          <NavLink to="/dashboard">Go Back</NavLink>
+        </p>
+      )}
+      {}. {/* Quiz Body */}
       <div className="quiz-body">
         {Array.isArray(questions) &&
           questions.map(

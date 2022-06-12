@@ -42,6 +42,8 @@ const quizSlice = createSlice({
     builder.addCase(getQuizes.fulfilled, (state, action) => {
       if (action.payload.status === 200) {
         state.quiz = action.payload.data;
+        state.isError = false;
+        state.message = "";
       } else {
         state.message = action.payload.message;
         state.isError = true;

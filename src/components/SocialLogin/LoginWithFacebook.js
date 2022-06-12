@@ -10,7 +10,7 @@ function LoginWithFacebook() {
   return (
     <FacebookLogin
       appId="1088597931155576"
-      autoLoad={true}
+      autoLoad={false}
       fields="name,email,picture"
       // onClick={componentClicked}
       callback={responseFacebook}

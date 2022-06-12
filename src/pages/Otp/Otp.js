@@ -69,6 +69,7 @@ const Otp = () => {
             onChange={handleChange}
             numInputs={4}
             separator={<span>-</span>}
+            inputStyle={{ width: "50px" }}
           />
         </div>
         <NavLink to="" style={{ width: "90%" }}>
