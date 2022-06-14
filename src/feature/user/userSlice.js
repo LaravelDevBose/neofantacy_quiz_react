@@ -56,6 +56,40 @@ export const getMe = createAsyncThunk("auth/getMe", async (user, thunkAPI) => {
   }
 });
 
+export const googleLogin = createAsyncThunk(
+  "auth/googleLogin",
+  async (data, thunkAPI) => {
+    try {
+      const { name, email, provider, provider_id } = data;
+      const bodyFormData = new FormData();
+      bodyFormData.append("name", name);
+      bodyFormData.append("provider", provider);
+      bodyFormData.append("provider_id", provider_id);
+      bodyFormData.append("email", email);
+
+      const res = await axios({
+        method: "post",
+        url: `${API_URL}/social-login`,
+        data: bodyFormData,
+      });
+
+      if (res.status === 200) {
+        return res.data.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // logout user
 export const logoutUser = createAsyncThunk(
   "auth/logout",
@@ -156,6 +190,11 @@ export const userSlice = createSlice({
       })
       .addCase(getLeadingUsers.fulfilled, (state, action) => {
         state.lead = action.payload.data;
+      })
+      .addCase(googleLogin.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.user = action.payload.user;
+        setToken(action.payload.access_token);
       });
   },
 });
