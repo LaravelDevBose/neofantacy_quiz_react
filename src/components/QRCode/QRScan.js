@@ -12,6 +12,14 @@ function QRCodeReader({ handleScan }, ref) {
     width: 400,
     height: 400,
   };
+  const constra = {
+    width: { min: 400, ideal: 400, max: 400 },
+    height: { min: 400, ideal: 400 },
+    aspectRatio: 1.777777778,
+    frameRate: { max: 30 },
+    facingMode: { exact: "application" }
+  }
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <QrReader
@@ -20,8 +28,7 @@ function QRCodeReader({ handleScan }, ref) {
         style={previewStyle}
         onError={handleError}
         onScan={handleScan}
-        facingMode="application"
-        // constraints="{ facingMode: 'application' }"
+        constraints={constra}
       />
     </div>
   );
