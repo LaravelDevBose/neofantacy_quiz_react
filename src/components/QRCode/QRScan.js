@@ -21,6 +21,7 @@ function QRCodeReader({ handleScan }, ref) {
         onError={handleError}
         onScan={handleScan}
         facingMode="rear"
+        constraints={{ facingMode: "environment" }}
       />
     </div>
   );
