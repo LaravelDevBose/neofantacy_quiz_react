@@ -1,4 +1,4 @@
-export const API_URL = "http://quiz_admin.devbose.xyz/api";
+export const API_URL = "https://quizadmin.neofantasy.io/api";
 
 // export function hideMyModal(modalId) {
 //   $(`${modalId}`).hide();

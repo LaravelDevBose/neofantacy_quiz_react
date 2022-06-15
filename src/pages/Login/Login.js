@@ -38,17 +38,17 @@ const Login = () => {
       <Header />
       <Numeric />
       <div className="container">
-        <p id="instruction">Enter your phone number to continue</p>
+        <p id="instruction">Enter your email address to continue</p>
         <div className="input-field">
-          <div
+          {/* <div
             style={{ borderRight: "1px solid #989898", padding: "0 0.5rem" }}
           >
             <p>+91</p>
-          </div>
+          </div> */}
           <input
             onChange={handleChangePhone}
-            type="tel"
-            placeholder="Enter Mobile Number"
+            type="email"
+            placeholder="Enter Email Address"
           />
         </div>
         <NavLink to="/otp" params={{ phone: phone }} style={{ width: "90%" }}>
