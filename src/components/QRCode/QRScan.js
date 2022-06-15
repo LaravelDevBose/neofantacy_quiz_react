@@ -20,6 +20,7 @@ function QRCodeReader({ handleScan }, ref) {
         style={previewStyle}
         onError={handleError}
         onScan={handleScan}
+        facingMode="rear"
       />
     </div>
   );
