@@ -17,16 +17,13 @@ function QRCodeReader({ handleScan }, ref) {
     height: { min: 400, ideal: 400 },
     aspectRatio: 1.777777778,
     frameRate: { max: 30 },
-    facingMode: { exact: "application" },
+    facingMode: { exact: "environment" },
     video: {
       width: {  min: 400, ideal: 400, max: 400 },
       height: { min: 400, ideal: 400 },
       aspectRatio: { ideal: 1.7777777778 }
     },
-    audio: {
-      sampleSize: 16,
-      channelCount: 2
-    }
+    audio: false
   }
 
   return (
