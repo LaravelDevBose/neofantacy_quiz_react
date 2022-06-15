@@ -98,6 +98,7 @@ export const initialize = async() => {
 
 export const onClickConnect = async () => {
   try {
+    console.log('sfsdf');
     const { ethereum } = window;
     if (!isMetaMaskInstalled()){
       alert('Please Install Metamask');

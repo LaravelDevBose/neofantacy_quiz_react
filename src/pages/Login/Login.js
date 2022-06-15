@@ -49,6 +49,7 @@ const Login = () => {
             onChange={handleChangePhone}
             type="email"
             placeholder="Enter Email Address"
+            style={{ width: "100%"}}
           />
         </div>
         <NavLink to="/otp" params={{ phone: phone }} style={{ width: "90%" }}>
