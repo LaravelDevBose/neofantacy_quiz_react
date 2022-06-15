@@ -8,6 +8,7 @@ import signout from "../../../assets/signout.png";
 import { logoutUser } from "../../../feature/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { onClickConnect } from "../../../Helper/helper";
 
 const Header = () => {
   const [opened, setOpened] = useState(false);
@@ -15,6 +16,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.user);
   const navigate = useNavigate();
+  const connectWallet = async () => {
+    await onClickConnect();
+  }
   return (
     <div className="header">
       <div className="left">
@@ -59,7 +63,7 @@ const Header = () => {
           <h4 className="silent-text">{user?.email}</h4>
         </div>
         <Divider my="md" size="xs" />
-        <p style={{ textAlign: "center" }}>Connect Wallet</p>
+        <p style={{ textAlign: "center" }} onClick={connectWallet}>Connect Wallet</p>
         <Divider my="md" size="xs" />
 
         <div
