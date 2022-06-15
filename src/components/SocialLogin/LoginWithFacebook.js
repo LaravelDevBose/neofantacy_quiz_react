@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FacebookLogin from "react-facebook-login";
 import Facebook from "../../assets/facebook.png";
+import { socialLogin } from "../../feature/user/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function LoginWithFacebook() {
+  const user = useSelector((state) => state?.user.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user?.email) navigate("/dashboard");
+  }, [user?.email]);
+
   const responseFacebook = (response) => {
     console.log(response);
+
+    let name = "";
+    let provider = "facebook";
+    let provider_id = "";
+    let email = "";
+
+    if (response) {
+      name = response?.name;
+      email = response?.email;
+      provider_id = response?.id;
+    }
+
+    dispatch(socialLogin({ name, provider, email, provider_id }));
   };
 
   return (

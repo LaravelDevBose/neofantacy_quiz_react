@@ -5,7 +5,7 @@ import Google from "../../assets/google.png";
 import axios from "axios";
 import { API_URL, getToken } from "../../Helper/helper";
 import { useDispatch, useSelector } from "react-redux";
-import { googleLogin } from "../../feature/user/userSlice";
+import { socialLogin } from "../../feature/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginWithGoogle() {
@@ -41,7 +41,7 @@ export default function LoginWithGoogle() {
       provider_id = response?.profileObj?.googleId;
     }
 
-    dispatch(googleLogin({ name, provider, email, provider_id }));
+    dispatch(socialLogin({ name, provider, email, provider_id }));
   };
 
   return (

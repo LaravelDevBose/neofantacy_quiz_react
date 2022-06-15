@@ -56,7 +56,7 @@ export const getMe = createAsyncThunk("auth/getMe", async (user, thunkAPI) => {
   }
 });
 
-export const googleLogin = createAsyncThunk(
+export const socialLogin = createAsyncThunk(
   "auth/googleLogin",
   async (data, thunkAPI) => {
     try {
@@ -191,7 +191,7 @@ export const userSlice = createSlice({
       .addCase(getLeadingUsers.fulfilled, (state, action) => {
         state.lead = action.payload.data;
       })
-      .addCase(googleLogin.fulfilled, (state, action) => {
+      .addCase(socialLogin.fulfilled, (state, action) => {
         console.log(action.payload);
         state.user = action.payload.user;
         setToken(action.payload.access_token);
