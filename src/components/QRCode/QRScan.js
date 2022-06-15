@@ -17,7 +17,9 @@ function QRCodeReader({ handleScan }, ref) {
     height: { min: 400, ideal: 400 },
     aspectRatio: 1.777777778,
     frameRate: { max: 30 },
-    facingMode: { exact: "application" }
+    facingMode: { exact: "application" },
+    video: false,
+    audio: false
   }
 
   return (
