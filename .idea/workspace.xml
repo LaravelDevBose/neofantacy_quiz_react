@@ -3,15 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ccc00c01-9a2e-4aae-9486-5b0515148b37" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helper/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helper/helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Others/Header/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Others/Header/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Others/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Others/Header/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/QRCode/QRScan.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QRCode/QRScan.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login/Login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
