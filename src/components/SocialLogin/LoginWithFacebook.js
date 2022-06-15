@@ -13,7 +13,7 @@ function LoginWithFacebook() {
       style={{ width: "100%", display: "flex", justifyContent: "center" }}
     >
       <FacebookLogin
-        appId="1088597931155576"
+        appId="793134058808027"
         autoLoad={false}
         fields="name,email,picture"
         // onClick={componentClicked}
