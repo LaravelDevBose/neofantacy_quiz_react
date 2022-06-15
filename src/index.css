@@ -33,3 +33,12 @@
 .d-block {
   display: block;
 }
+.fb-login > span  {
+  width: 100%!important;
+  display: flex;
+  justify-content: center;
+}
+.kep-login-facebook {
+  border-radius: 30px!important;
+  width: 90%!important;
+}
