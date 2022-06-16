@@ -56,7 +56,7 @@ const Dashboard = () => {
 
       navigate("/quiz", {
         state: {
-          quizId: data.text,
+          quizId: data,
         },
       });
       qrRef.current.stopCamera();
