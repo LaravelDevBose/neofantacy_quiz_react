@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Header from "../../components/Others/Header/Header";
-import { Tabs } from "@mantine/core";
+import {Tabs, Modal, useMantineTheme} from "@mantine/core";
 import "./Dashboard.css";
 import Trophy from "../../assets/green_trophy.png";
 import Position from "../../assets/position.png";
@@ -15,6 +15,7 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
+  const [showLB, setShowLb] = useState(0);
   const [qrData, setQrData] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +23,8 @@ const Dashboard = () => {
   const qrRef = useRef(null);
   const [point, setPoint] = useState(0);
   const [position, setPosition] = useState(0);
-
+  const [openedP, setOpenedP] = useState(false);
+  const theme = useMantineTheme();
   useEffect(() => {
     if (!getToken()) {
       navigate("/");
@@ -43,6 +45,7 @@ const Dashboard = () => {
     });
   }, []);
 
+  console.log(showLB);
   const handleOpenQRCode = () => {
     setQrData("");
     setOpenQR(true);
@@ -62,7 +65,9 @@ const Dashboard = () => {
       qrRef.current.stopCamera();
     }
   };
-
+  const changeTab = (active) => {
+    setShowLb(active)
+  }
   return (
     <div className="dash">
       <Header />
@@ -70,7 +75,7 @@ const Dashboard = () => {
         className="prog-lead"
         style={{ maxHeight: "50vh", overflow: "auto" }}
       >
-        <Tabs color="dark" variant="pills">
+        <Tabs color="dark" variant="pills" active={showLB} onTabChange={changeTab}>
           <Tabs.Tab label="My Progess">
             <div className="tab-con">
               <div className="block1 d-flex-column">
@@ -80,7 +85,7 @@ const Dashboard = () => {
                 </div>
                 <img src={Trophy} alt="trophy" />
               </div>
-              <div className="block2 d-flex-column">
+              <div onClick={() => setShowLb(1)} className="block2 d-flex-column">
                 <div className="d-flex">
                   <h1 style={{ marginRight: "0.3rem" }}>{position}</h1>
                   <p>position</p>
@@ -90,47 +95,52 @@ const Dashboard = () => {
             </div>
           </Tabs.Tab>
           <Tabs.Tab label="Leaderboard">
-            <div className="d-flex-column lead">
-              {Array.isArray(lead) &&
-                lead.map((user, index) => {
-                  let rankStyle = "";
-                  if (index === 0) {
-                    rankStyle = "first";
-                  }
-                  if (index === 1) {
-                    rankStyle = "second";
-                  }
-                  if (index === 2) {
-                    rankStyle = "third";
-                  }
+            { showLB? (
+                <div className="d-flex-column lead">
+                  {Array.isArray(lead) &&
+                      lead.map((user, index) => {
+                        let rankStyle = "";
+                        if (index === 0) {
+                          rankStyle = "first";
+                        }
+                        if (index === 1) {
+                          rankStyle = "second";
+                        }
+                        if (index === 2) {
+                          rankStyle = "third";
+                        }
 
-                  return (
-                    <div className={`${rankStyle} top-ranks`}>
-                      <div className="d-flex">
-                        <h2>#{index + 1}</h2>
-                        <p style={{ marginLeft: "1rem" }}>@{user.name}</p>
-                      </div>
-                      <Badge
-                        size="lg"
-                        style={{
-                          borderRadius: "5px",
-                          textTransform: "capitalize",
-                          color: "white",
-                          backgroundColor: "#ffb636",
-                          padding: "0.8rem 0.3rem",
-                        }}
-                      >
-                        {user.total_point ? user.total_point : 0} pts
-                      </Badge>
-                    </div>
-                  );
-                })}
-            </div>
+                        return (
+                            <div className={`${rankStyle} top-ranks`}>
+                              <div className="d-flex">
+                                <h2>#{index + 1}</h2>
+                                <p style={{ marginLeft: "1rem" }}>@{user.name}</p>
+                              </div>
+                              <Badge
+                                  size="lg"
+                                  style={{
+                                    borderRadius: "5px",
+                                    textTransform: "capitalize",
+                                    color: "white",
+                                    backgroundColor: "#ffb636",
+                                    padding: "0.8rem 0.3rem",
+                                  }}
+                              >
+                                {user.total_point ? user.total_point : 0} pts
+                              </Badge>
+                            </div>
+                        );
+                      })}
+                </div>
+            ): (
+                <div></div>
+            )}
           </Tabs.Tab>
         </Tabs>
         <p
           className="text-center"
           style={{ opacity: "0.4", marginTop: "1.2rem", fontSize: "0.8rem" }}
+          onClick={() => setOpenedP(true)}
         >
           {" "}
           <i> How do i earn more points ?</i>
@@ -158,7 +168,49 @@ const Dashboard = () => {
         </button>
       </div>
       {openQR && <QRCodeReader ref={qrRef} handleScan={handleScan} />}
+
+      <Modal
+          overlayColor={
+            theme.colorScheme === "dark"
+                ? theme.colors.dark[9]
+                : theme.colors.gray[8]
+          }
+          overlayOpacity={0.55}
+          overlayBlur={3}
+          centered
+          opened={openedP}
+          onClose={() => setOpenedP(false)}
+      >
+        <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "14px",
+              padding: "1rem",
+              marginTop: "-3rem",
+            }}
+        >
+          <h1>Guide</h1>
+          <ul style={{
+            padding: 0,
+            margin: 0,
+            listStyle: 'auto',
+            marginLeft: "15px"
+          }}>
+            <li style={{paddingBottom: ".5rem"}}> Search for Beacons/QR codes in the event area</li>
+            <li style={{paddingBottom: ".5rem"}}> Scan the QRs within the Application using the “Scan QR” button.</li>
+            <li style={{paddingBottom: ".5rem"}}> Answer the questions and earn points</li>
+            <li style={{paddingBottom: ".5rem"}}> As per the leaderboard you will be receiving the NFT rewards once the
+              event comes to an end!
+            </li>
+            <li style={{paddingBottom: ".5rem"}}> Good Luck!</li>
+          </ul>
+        </div>
+      </Modal>
     </div>
+
   );
 };
 

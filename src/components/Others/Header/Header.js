@@ -95,11 +95,12 @@ const Header = () => {
         </div>
         <Divider my="md" size="xs" />
          <div style={{ textAlign: "center" }}>
-             {device?(
+             <div  style={{ textAlign: "center" , color: "#767676", textDecoration: "none", cursor: 'pointer'}}  onClick={connectWallet}>Connect Wallet</div>
+             {/*{device?(
                  <a style={{ textAlign: "center" , color: "#767676", textDecoration: "none"}} href="https://metamask.app.link/dapp/21by72.neofantasy.io" target="_blank">Connect Wallet</a>
              ): (
                  <div  style={{ textAlign: "center" , color: "#767676", textDecoration: "none", cursor: 'pointer'}}  onClick={connectWallet}>Connect Wallet</div>
-             )}
+             )}*/}
          </div>
 
         <Divider my="md" size="xs" />

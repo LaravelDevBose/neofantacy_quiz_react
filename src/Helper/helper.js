@@ -97,24 +97,45 @@ export const initialize = async() => {
 
 
 export const onClickConnect = async () => {
-  try {
-    console.log('sfsdf');
-    const { ethereum } = window;
-    if (!isMetaMaskInstalled()){
-      alert('Please Install Metamask');
-    }
-    //Will Start the MetaMask Extension
-    let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    if(accounts[0]!= ''){
-      return accounts[0];
-      // $("#connect_wallet").html("Connected");
-      // $("#connect_wallet").prop( "disabled", true );
-    }else{
-      alert('Something Wrong. Metamask not connected');
-      return  false;
-    }
 
-  } catch (error) {
-    console.error(error);
+  const { ethereum } = window;
+  if (ethereum && ethereum.isMetaMask) {
+    console.log('Ethereum successfully detected!');
+    // Access the decentralized web!
+  } else {
+    console.log('Please install MetaMask!');
   }
+/*  if (window.ethereum) {
+    try {
+      const res = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      // await accountChange(res[0]);
+    } catch (err) {
+      console.error(err);
+      alert("There was a problem connecting to MetaMask");
+    }
+  } else {
+    alert("Install MetaMask");
+  }*/
+
+  // try {
+  //   const { ethereum } = window;
+  //   if (!isMetaMaskInstalled()){
+  //     alert('Please Install Metamask');
+  //   }
+  //   //Will Start the MetaMask Extension
+  //   let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  //   if(accounts[0]!= ''){
+  //     return accounts[0];
+  //     // $("#connect_wallet").html("Connected");
+  //     // $("#connect_wallet").prop( "disabled", true );
+  //   }else{
+  //     alert('Something Wrong. Metamask not connected');
+  //     return  false;
+  //   }
+
+  // } catch (error) {
+  //   console.error(error);
+  // }
 };
