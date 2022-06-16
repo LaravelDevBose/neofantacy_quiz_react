@@ -70,6 +70,7 @@ const Otp = () => {
             numInputs={4}
             separator={<span>-</span>}
             inputStyle={{ width: "50px" }}
+            isInputNum={true}
           />
         </div>
         <NavLink to="" style={{ width: "90%" }}>
