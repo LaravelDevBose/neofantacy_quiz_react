@@ -12,6 +12,20 @@ function QRCodeReader({ handleScan }, ref) {
     width: 400,
     height: 400,
   };
+  const constra = {
+    width: { min: 400, ideal: 400, max: 400 },
+    height: { min: 400, ideal: 400 },
+    aspectRatio: 1.777777778,
+    frameRate: { max: 30 },
+    facingMode: { exact: "environment" },
+    video: {
+      width: {  min: 400, ideal: 400, max: 400 },
+      height: { min: 400, ideal: 400 },
+      aspectRatio: { ideal: 1.7777777778 }
+    },
+    audio: false
+  }
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <QrReader

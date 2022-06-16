@@ -120,7 +120,7 @@ const Dashboard = () => {
                           padding: "0.8rem 0.3rem",
                         }}
                       >
-                        {user.point ? user.point : 0}pts
+                        {user.total_point ? user.total_point : 0} pts
                       </Badge>
                     </div>
                   );
@@ -142,7 +142,9 @@ const Dashboard = () => {
         <Tabs color="dark" variant="pills">
           <Tabs.Tab label="My rewards">
             <div className="tab-con">
-              <h2>Coming Soon...</h2>
+              <div>
+                <h2>Scan more QRs to win exciting rewards!</h2>
+              </div>
             </div>
           </Tabs.Tab>
           <Tabs.Tab label="Explore rewards">
