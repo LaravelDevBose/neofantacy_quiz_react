@@ -42,6 +42,7 @@ function LoginWithFacebook() {
         fields="name,email,picture"
         // onClick={componentClicked}
         callback={responseFacebook}
+        disableMobileRedirect={true}
         render={(renderProps) => (
           <button
             className="btn"
