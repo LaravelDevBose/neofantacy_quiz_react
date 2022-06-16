@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import QrReader from "react-qr-scanner";
+import QrReader from "modern-react-qr-reader";
 
 function QRCodeReader({ handleScan }, ref) {
   console.log();
@@ -20,8 +20,7 @@ function QRCodeReader({ handleScan }, ref) {
         style={previewStyle}
         onError={handleError}
         onScan={handleScan}
-        facingMode="rear"
-        constraints={{ facingMode: "environment" }}
+        facingMode={"environment"}
       />
     </div>
   );
