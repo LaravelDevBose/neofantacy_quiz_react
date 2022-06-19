@@ -140,7 +140,7 @@ const Quiz = () => {
           <NavLink to="/dashboard">Go Back</NavLink>
         </p>
       )}
-      {}. {/* Quiz Body */}
+      {/* Quiz Body */}
       <div className="quiz-body">
         {Array.isArray(questions) &&
           questions.map(
