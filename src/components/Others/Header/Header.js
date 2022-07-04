@@ -9,6 +9,7 @@ import { logoutUser } from "../../../feature/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { onClickConnect } from "../../../Helper/helper";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const Header = () => {
   const [opened, setOpened] = useState(false);

@@ -1,3 +1,4 @@
+import WalletConnectProvider from "@walletconnect/web3-provider";
 export const API_URL = 'https://quizadmin.neofantasy.io/api';
 
 // export function hideMyModal(modalId) {
@@ -55,8 +56,13 @@ export const fetchJsonData = async (url) => {
 //   return nftData;
 // };
 
-const Web3 = require('web3');
-const web3 = new Web3(window.ethereum);
+// const provider = new WalletConnectProvider({
+// 	rpc: "https://goerli.infura.io/v3/5d8499c4f2604e588424ba8c0cace767"
+// });
+// await provider.enable();
+
+// const Web3 = require('web3');
+// const web3 = new Web3(provider);
 const isMetaMaskInstalled = () => {
 	//Have to check the ethereum binding on the window object to see if it's installed
 	const { ethereum } = window;
@@ -95,13 +101,24 @@ export const initialize = async () => {
 };
 
 export const onClickConnect = async () => {
-	const { ethereum } = window;
-	if (ethereum && ethereum.isMetaMask) {
-		console.log('Ethereum successfully detected!');
-		// Access the decentralized web!
-	} else {
-		console.log('Please install MetaMask!');
-	}
+
+	const provider = new WalletConnectProvider({
+		rpc: "https://goerli.infura.io/v3/5d8499c4f2604e588424ba8c0cace767"
+	});
+	await provider.enable();
+	
+	const Web3 = require('web3');
+	const web3 = new Web3(provider);
+
+	const accounts = await web3.eth.getAccounts();
+	console.log("Accounts: ", accounts);
+	// const { ethereum } = window;
+	// if (ethereum && ethereum.isMetaMask) {
+	// 	console.log('Ethereum successfully detected!');
+	// 	// Access the decentralized web!
+	// } else {
+	// 	console.log('Please install MetaMask!');
+	// }
 	/*  if (window.ethereum) {
     try {
       const res = await window.ethereum.request({
